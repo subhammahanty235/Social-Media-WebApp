@@ -22,6 +22,9 @@ const PostSchema = mongoose.Schema({
                 type:String,
                 
             },
+            commentedBy:{
+                type:String,
+            },
             likes:{
                 type:Number,
                 default:0,
