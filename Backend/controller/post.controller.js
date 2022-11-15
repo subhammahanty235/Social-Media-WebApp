@@ -73,9 +73,22 @@ const commentonpost = async (req, res) => {
 const editapost = (req, res) => {
 
 }
-const removeapost = () => {
+const removeapost = async(req,res) => {
+    const user = req.user.id;
+    if(!user){
+       return res.status(502).json({flag:false,message:"You are not authorized to delete this post"});
+    }
+    else{
+        const postid = req.params.id;
+        try {
+            await Post.findByIdAndRemove(postid);
+            res.status(200).json({flag:true,message:"Deleted Successfully"});
 
+        } catch (error) {
+            res.status(501).json({ flag: false, message: "Internal Server Error" });
+        }
+    }
 }
 
 
-module.exports = { uploadpost, likepost }
+module.exports = { uploadpost, likepost,commentonpost,removeapost }
