@@ -31,20 +31,45 @@ const uploadpost = async (req, res) => {
 
 
 }
-const likepost =async (req, res) => {
+const likepost = async (req, res) => {
     const id = req.user.id;
     const postid = req.params.id;
     try {
-        const addlike = await Post.findByIdAndUpdate(postid, {$push:{likes:id}});
+        const addlike = await Post.findByIdAndUpdate(postid, { $push: { likes: id } });
         // return res.json({"likes":addlike.likes.length , "status":true , "likedby":addlike.likes})
         res.send(addlike)
     } catch (error) {
         res.send(error)
     }
 }
-const commentonpost = (req, res) => {
+const commentonpost = async (req, res) => {
+    const flag = false;
+    const id = req.user.id;
+    const data = req.body;
+    const postid = req.params.id
+    try {
+        await Post.findByIdAndUpdate(postid, { $push: { comment: data.comment, commentedBy: id } }).exec((err, data) => {
+            if (err) {
+                res.status(502).json({ flag: false, message: err.message });
+            }
+            if (data) {
+                return res.status(200).json({ flag: true, details: data });
+            }
+            else {
+                return res
+                    .status(404)
+                    .json({ flag: false, message: "Post Not found" });
+
+            }
+        })
+    } catch (error) {
+        res.status(501).json({ flag: false, message: "Internal Server Error" });
+    }
+
 
 }
+
+
 const editapost = (req, res) => {
 
 }
@@ -53,4 +78,4 @@ const removeapost = () => {
 }
 
 
-module.exports = { uploadpost,likepost }
+module.exports = { uploadpost, likepost }
