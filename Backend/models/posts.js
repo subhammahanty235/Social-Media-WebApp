@@ -5,7 +5,7 @@ const PostSchema = mongoose.Schema({
         
     },
     uploadedBy:{
-        type:mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'users',
     },
     media:{
@@ -13,8 +13,8 @@ const PostSchema = mongoose.Schema({
 
     },
     likes:{
-        type:Number,
-        default:0,
+        type:[String],
+        
     },
     comments:[
         {

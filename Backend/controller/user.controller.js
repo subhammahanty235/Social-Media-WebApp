@@ -18,8 +18,8 @@ const editprofile = async (req, res) => {
 const deleteprofile = async (req, res) => {
     const id = req.user.id;
     try {
-        const data = await User.findByIdAndDelete(id);
-        const removeposts = await Post.deleteMany({ uploadedBy: id });
+        await User.findByIdAndDelete(id);
+        await Post.deleteMany({ uploadedBy: id });
         res.send("deleted successfully")
     } catch (error) {
         res.send("error occured")
@@ -50,7 +50,7 @@ const unfollowuser = async (req, res) => {
         await User.findByIdAndUpdate(othid, { $pull: { followers: myid } });
         await User.findByIdAndUpdate(myid, { $pull: { following: othid } });
         flag = true;
-        res.json({flag});
+        res.json({ flag });
 
     } catch (error) {
         console.log(error)
@@ -69,7 +69,7 @@ const getuserdetails = async (req, res) => {
 }
 
 const changeprofilepic = async (req, res) => {
-
+    
 }
 
 module.exports = { editprofile, deleteprofile, followuser, unfollowuser, getuserdetails, changeprofilepic };
