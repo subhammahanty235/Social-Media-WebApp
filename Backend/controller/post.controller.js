@@ -4,7 +4,7 @@ const Post = require('../models/posts');
 
 // 1. upload a post
 // 2. Like a post
-// 3. Cooment
+// 3. Comment
 // 4. edit a post
 // 5. Remove a post
 // 6. Show only posts from people followed
@@ -35,9 +35,22 @@ const likepost = async (req, res) => {
     const id = req.user.id;
     const postid = req.params.id;
     try {
-        const addlike = await Post.findByIdAndUpdate(postid, { $push: { likes: id } });
+        await Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err,data)=>{
+            if(err){
+                res.status(502).json({ flag: false, message: err.message });
+            }
+            if(data){
+                return res.status(200).json({ flag: true, details: data });
+            }
+            else{
+                return res
+                    .status(404)
+                    .json({ flag: false, message: "Post Not found" });
+
+            }
+        })
         // return res.json({"likes":addlike.likes.length , "status":true , "likedby":addlike.likes})
-        res.send(addlike)
+        
     } catch (error) {
         res.send(error)
     }
@@ -70,8 +83,32 @@ const commentonpost = async (req, res) => {
 }
 
 
-const editapost = (req, res) => {
+const editapost = async(req, res) => {
+    const newdata = req.body;
+    const postid = req.params.id;
+    const userid = req.user.id;
+    if(!userid){
+        return req.status(404).json({flag:false , message:"Sorry , your user id not found"});
+    }
+    if(!postid){
+        return req.status(404).json({flag:false , message:"Sorry , Can't fetch the post's id"});
+    }
+    await Post.findByIdAndUpdate(postid , newdata).exec((err,data)=>{
+        if(err){
+            res.status(502).json({flag:true , message:err.message});
+        }
+        if(data){
+            return res.status(200).json({ flag: true, details: data });
+        }
+        else {
+            return res
+                .status(404)
+                .json({ flag: false, message: "Post Not found" });
 
+        }
+
+    })
+    
 }
 const removeapost = async(req,res) => {
     const user = req.user.id;
@@ -91,4 +128,4 @@ const removeapost = async(req,res) => {
 }
 
 
-module.exports = { uploadpost, likepost,commentonpost,removeapost }
+module.exports = { uploadpost, likepost,commentonpost,removeapost ,editapost}
