@@ -1,32 +1,32 @@
 const Post = require('../models/posts');
 const User = require('../models/user');
 
-const editprofile = async (req, res) => {
+const editprofile = async(req,res)=>{
     const data = req.body;
     let userId = req.user.id;
     let newdata = {};
-    if (data.name) newdata.name = data.name;
-    if (data.mobileno) newdata.mobileno = data.mobileno;
+    if(data.name)newdata.name = data.name;
+    if(data.mobileno)newdata.mobileno = data.mobileno;
 
     try {
-        const updateddata = await User.findByIdAndUpdate(userId, { $set: newdata }, { new: true });
+        const updateddata = await User.findByIdAndUpdate(userId,{$set:newdata},{new:true});
         res.send(updateddata);
     } catch (error) {
         res.send(error)
     }
 }
-const deleteprofile = async (req, res) => {
+const deleteprofile = async(req,res)=>{
     const id = req.user.id;
     try {
         await User.findByIdAndDelete(id);
-        await Post.deleteMany({ uploadedBy: id });
+        await Post.deleteMany({uploadedBy:id});
         res.send("deleted successfully")
     } catch (error) {
         res.send("error occured")
     }
 }
 
-const followuser = async (req, res) => {
+const followuser = async(req,res)=>{
     const myid = req.user.id;
     const othid = req.params.id;
     let flag = false;
@@ -41,7 +41,7 @@ const followuser = async (req, res) => {
         console.log(error)
     }
 }
-const unfollowuser = async (req, res) => {
+const unfollowuser = async(req,res)=>{
     const myid = req.user.id;
     const othid = req.params.id;
     let flag = false;
@@ -57,19 +57,19 @@ const unfollowuser = async (req, res) => {
     }
 }
 
-const getuserdetails = async (req, res) => {
+const getuserdetails = async(req,res)=>{
     const id = req.params.id;
     try {
-        const userdata = await User.findOne({ _id: id }).select("-password");
-        const postbyuser = await Post.find({ uploadedBy: id });
-        res.json({ user: userdata, posts: postbyuser })
+        const userdata = await User.findOne({_id:id}).select("-password");
+        const postbyuser = await Post.find({uploadedBy:id});
+        res.json({user:userdata , posts:postbyuser})
     } catch (error) {
         res.send(error)
     }
 }
 
-const changeprofilepic = async (req, res) => {
-    
+const changeprofilepic = async(req,res)=>{
+
 }
 
-module.exports = { editprofile, deleteprofile, followuser, unfollowuser, getuserdetails, changeprofilepic };
+module.exports = {editprofile , deleteprofile , followuser , unfollowuser , getuserdetails , changeprofilepic}

@@ -35,14 +35,14 @@ const likepost = async (req, res) => {
     const id = req.user.id;
     const postid = req.params.id;
     try {
-        await Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err,data)=>{
-            if(err){
+        Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
+            if (err) {
                 res.status(502).json({ flag: false, message: err.message });
             }
-            if(data){
+            if (data) {
                 return res.status(200).json({ flag: true, details: data });
             }
-            else{
+            else {
                 return res
                     .status(404)
                     .json({ flag: false, message: "Post Not found" });
@@ -50,7 +50,7 @@ const likepost = async (req, res) => {
             }
         })
         // return res.json({"likes":addlike.likes.length , "status":true , "likedby":addlike.likes})
-        
+
     } catch (error) {
         res.send(error)
     }
@@ -61,7 +61,7 @@ const commentonpost = async (req, res) => {
     const data = req.body;
     const postid = req.params.id
     try {
-        await Post.findByIdAndUpdate(postid, { $push: { comment: data.comment, commentedBy: id } }).exec((err, data) => {
+        Post.findByIdAndUpdate(postid, { $push: { comments:{ comment:data.comment, commentedBy: id  }} }).exec((err, data) => {
             if (err) {
                 res.status(502).json({ flag: false, message: err.message });
             }
@@ -83,21 +83,21 @@ const commentonpost = async (req, res) => {
 }
 
 
-const editapost = async(req, res) => {
+const editapost = async (req, res) => {
     const newdata = req.body;
     const postid = req.params.id;
     const userid = req.user.id;
-    if(!userid){
-        return req.status(404).json({flag:false , message:"Sorry , your user id not found"});
+    if (!userid) {
+        return req.status(404).json({ flag: false, message: "Sorry , your user id not found" });
     }
-    if(!postid){
-        return req.status(404).json({flag:false , message:"Sorry , Can't fetch the post's id"});
+    if (!postid) {
+        return req.status(404).json({ flag: false, message: "Sorry , Can't fetch the post's id" });
     }
-    await Post.findByIdAndUpdate(postid , newdata).exec((err,data)=>{
-        if(err){
-            res.status(502).json({flag:true , message:err.message});
+    Post.findByIdAndUpdate(postid, newdata).exec((err, data) => {
+        if (err) {
+            res.status(502).json({ flag: true, message: err.message });
         }
-        if(data){
+        if (data) {
             return res.status(200).json({ flag: true, details: data });
         }
         else {
@@ -108,18 +108,18 @@ const editapost = async(req, res) => {
         }
 
     })
-    
+
 }
-const removeapost = async(req,res) => {
+const removeapost = async (req, res) => {
     const user = req.user.id;
-    if(!user){
-       return res.status(502).json({flag:false,message:"You are not authorized to delete this post"});
+    if (!user) {
+        return res.status(502).json({ flag: false, message: "You are not authorized to delete this post" });
     }
-    else{
+    else {
         const postid = req.params.id;
         try {
             await Post.findByIdAndRemove(postid);
-            res.status(200).json({flag:true,message:"Deleted Successfully"});
+            res.status(200).json({ flag: true, message: "Deleted Successfully" });
 
         } catch (error) {
             res.status(501).json({ flag: false, message: "Internal Server Error" });
@@ -128,4 +128,4 @@ const removeapost = async(req,res) => {
 }
 
 
-module.exports = { uploadpost, likepost,commentonpost,removeapost ,editapost}
+module.exports = { uploadpost, likepost, commentonpost, removeapost, editapost }
