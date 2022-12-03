@@ -30,6 +30,7 @@
     flex: 1;
     width: 50%;
     height: 100%;
+    overflow: hidden;
     /* border-right: 2px solid #1ba94c; */
     
 }
@@ -58,7 +59,7 @@
 }
 .login__header{
     color: #fff;
-    margin-bottom: 0;
+    /* margin-bottom: 10px; */
 
 }
 
@@ -69,6 +70,7 @@
 hr{
     background-color: #1ba94c;
     width: 30%;
+    margin-top: 10px;
     border: 2px solid #1ba94c;
 }
 
@@ -101,12 +103,13 @@ hr{
     /* border: 3px solid #1ba94c; */
     border: none;
     background-color: transparent;
-    color: #1ba94c;
+    color: #fff;
     font-weight: 500;
     padding: 10px 0px;
     width: 50%;
     border-radius: 20px;
     transition: all 0.5s;
+    cursor: pointer;
 }
 .btn-login:active{
     background-color: #1ba94c;
@@ -196,7 +199,7 @@ hr{
 
 
 /* demo */
-body {
+/* body {
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
@@ -205,7 +208,7 @@ body {
     min-height: 100vh;
     font-size: 1.5rem;
     background-color: #222222;
-}
+} */
 
 @media screen and (max-width: 1058px) {
     .innermain{

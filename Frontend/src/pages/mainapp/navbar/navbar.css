@@ -1,0 +1,17 @@
+*{
+    margin: 0;padding: 0;box-sizing: border-box;
+    
+}
+nav{
+    position:fixed;
+    margin: 0;
+    height: 10%;
+    border: 3px solid #fff;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid black;
+    padding: 10px;
+    font-size: 30px;
+}

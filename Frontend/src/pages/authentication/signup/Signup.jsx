@@ -36,7 +36,7 @@ function Signup() {
                         {/* <p className="text-center">
                             Aleady A user , Click on the Already User Button to login 
                         </p> */}
-                        <div className="buttonbox">
+                        {/* <div className="buttonbox">
                             <button className="btn-login1">
                                 Sign Up
                             </button>
@@ -44,7 +44,13 @@ function Signup() {
                                Already an User!
                             </button>
 
-                        </div>
+                        </div> */}
+                        <button className="btn-login">
+                            Sign Up
+                        </button>
+                        <button className="btn-signup">
+                            Already User? Log in
+                        </button>
                     </div>
 
                     {/* <button className="btn-su">Login</button> */}
