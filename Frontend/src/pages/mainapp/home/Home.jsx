@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import Feedbox from './feed/Feedbox'
 import './home.css'
 import Sidenav from './sidebar/Sidenav'
+import {useLocation} from 'react-router-dom'
 function Home() {
+    // let location = useLocation();
+    // useEffect(()=>{
+    //     console.log(location)
+    // })
     return (
-
+        <>
+        
         <div className="mainbody">
 
         <div className='homescreen'>
-            <div className="nv">
-
             <Navbar />
-            </div>
-
+        
             <div className="oth">
 
                 <div className="feedboxarea">
@@ -25,7 +28,7 @@ function Home() {
             </div>
         </div>
         </div>
-
+</>
 
     )
 }
