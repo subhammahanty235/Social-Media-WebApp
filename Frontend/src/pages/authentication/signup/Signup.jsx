@@ -1,8 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './signup.css'
 import login_image from '../../../images/zorin_login.png'
 function Signup() {
+    const navigate = useNavigate()
+    const onChange = (e) => {
+        setcredential({ ...credential, [e.target.name]: e.target.value })
+    }
+        const [credential, setcredential] = useState({ email: "", password: "" , name:"" });
+
+        const baseurl = "http://localhost:5000/api"
+        const login_func = async () => {
+            if (credential.username !== "" && credential.password !== "") {
+                console.log(credential)
+                try {
+                    const responce = await fetch("http://localhost:5000/api/auth/signup", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({name:credential.name, email: credential.email, password: credential.password })
+                    });
+    
+                    const json = await responce.json();
+                    
+                    console.log(json)
+                    if(json.flag === true){
+                        localStorage.setItem("sclmdia_73sub67_token", json.token)
+                        localStorage.setItem("sclmdia_73sub67_details", json.result)
+                        navigate('/')
+
+                    }
+                } catch (error) {
+                    console.log(error)
+                    alert("internal error occured")
+                }
+            }
+            else {
+                alert("please provide credentials")
+            }
+        }
     return (
+        
         <div>
             <div className="main">
 
@@ -18,19 +57,19 @@ function Signup() {
                         </h3>
                         <hr />
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="text" class="form__field" placeholder="Name" name="name" id='name' value={credential.name} onChange={onChange} required />
                             <label for="name" class="form__label">Full Name</label>
                         </div>
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="text" class="form__field" placeholder="email id" name="email" id='email' value={credential.email} onChange={onChange} required />
                             <label for="name" class="form__label">email id</label>
                         </div>
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="input" class="form__field" placeholder="Name" required />
                             <label for="name" class="form__label">username</label>
                         </div>
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="text" class="form__field" placeholder="Password"  name="password" id='password' value={credential.password} onChange={onChange} required />
                             <label for="name" class="form__label">password</label>
                         </div>
                         {/* <p className="text-center">
@@ -45,7 +84,7 @@ function Signup() {
                             </button>
 
                         </div> */}
-                        <button className="btn-login">
+                        <button className="btn-login" onClick={login_func}>
                             Sign Up
                         </button>
                         <button className="btn-signup">

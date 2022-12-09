@@ -9,6 +9,14 @@ const Post = require('../models/posts');
 // 5. Remove a post
 // 6. Show only posts from people followed
 
+const showallposts = async(req,res)=>{
+    try {
+        const data = await Post.find();
+        res.json(data);
+    } catch (error) {
+        res.send(error)
+    }
+}
 const uploadpost = async (req, res) => {
     const id = req.user.id;
     try {
@@ -128,4 +136,4 @@ const removeapost = async (req, res) => {
 }
 
 
-module.exports = { uploadpost, likepost, commentonpost, removeapost, editapost }
+module.exports = {showallposts, uploadpost, likepost, commentonpost, removeapost, editapost }

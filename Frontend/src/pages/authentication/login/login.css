@@ -54,11 +54,16 @@
     justify-content: center;
     border-right: 3px solid #fff;
     border-radius: 50px;
+    overflow: hidden;
     /* border-radius: 50px; */
 
 }
 .login__header{
     color: #fff;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    /* border: 2px solid #fff; */
     /* margin-bottom: 10px; */
 
 }

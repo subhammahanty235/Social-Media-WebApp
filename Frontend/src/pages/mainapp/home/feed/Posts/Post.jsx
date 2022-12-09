@@ -1,25 +1,44 @@
-import React, { useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import {GrLike} from 'react-icons/gr'
+import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots , faShare} from '@fortawesome/free-solid-svg-icons'
 function Post(props) {
-    const { image , textcontent } = props;
-    useEffect(()=>{
-        console.log(image);
+    const [uploadedBy , setUpoadedBy] = useState({})
+    const { post } = props;
 
+    useEffect(()=>{
+        console.log(post)
+        const fetch_data = async () => {
+            const userdata_raw = await fetch(`http://localhost:5000/api/auth/getdata/${post.uploadedBy}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            )
+
+            const userdata = await userdata_raw.json();
+            setUpoadedBy(userdata.user)
+            // console.log(mydata.posts)
+            
+            
+
+        }
+        fetch_data()
     },[])
     const style = { color: "green", fontSize: "1.5em", "margin":"2px"}
     const style2 = {color: "grey", fontSize: "1.5em", "margin":"0px 3px" }
     return (
         <div className='post'>
             <div className="postbyinfo">
-                <img src="https://scontent.fixr3-2.fna.fbcdn.net/v/t39.30808-6/314645764_1545955799189269_6229667795802265980_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=RZRYbzBtyEQAX9i47Zy&_nc_ht=scontent.fixr3-2.fna&oh=00_AfB6GDC7sgqFIvEgdCZxkAdasdcb2LcNc2ez8lviiIN0CA&oe=6391A923" alt="dp" />
+            <img src={uploadedBy?.profilepic !== null ?uploadedBy?.profilepic:"https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" } alt="image" />
                 <div className="nameanddate">
-                    <p>Subham Mahanty</p>
+                    <p>{uploadedBy?.name}</p>
                     <small className="timeline">
-                        2th october
+                        {moment(post?.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                     </small>
 
                 </div>
@@ -30,7 +49,7 @@ function Post(props) {
                 {
                 <div className="container">
                     {
-                        textcontent?<p>{textcontent}</p>:""
+                        post?.content?<p>{post.content}</p>:""
                     }
                     
                 </div>
@@ -38,9 +57,9 @@ function Post(props) {
                 }
                 
                 {
-                <div className="image">
+                <div className="conimage">
                     {
-                        image ? <img src={image} alt="image"/>:""
+                       post?.media ? <img src={post.media} alt="image"/>:""
 
                     }
 

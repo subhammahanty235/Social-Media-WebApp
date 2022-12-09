@@ -15,6 +15,7 @@ function Navbar() {
         // </div>
 
         <div className="navb">
+            
             <div className="logo"><img src={Logo} alt="logo" /></div>
             <input type="text" name="" id="" placeholder='hello'/>
         </div>

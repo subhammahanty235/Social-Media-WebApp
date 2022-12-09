@@ -15,10 +15,10 @@ const jwt = require('jsonwebtoken');
                 }
             }
             let token = jwt.sign(data , "jwtverify7263");
-            res.json({result:saveddata , token:token})
+            res.json({ flag : true, result:saveddata , token:token})
         }
         else{
-            res.send("User already exists with this email id , please login or use another email id")
+            res.send({ flag : true,message: "User already exists with this email id , please login or use another email id"})
         }
     } catch (error) {
         res.send(error)
@@ -31,7 +31,7 @@ const login = async(req,res)=>{
     try {
         const search_user = await User.findOne({$and:[{email:authdata.email},{password:authdata.password}]});
         if(!search_user){
-            res.send("Invalid Credentials! please try again");
+            res.json({flag:false , message:"Invalid Credentials! please try again"});
         }
         else{
             flag = true;
@@ -45,7 +45,7 @@ const login = async(req,res)=>{
             // res.json({flag , result:search_user})
         }
     } catch (error) {
-        
+        res.json({flag:false , message:"some error occured"});
     }
 
 }

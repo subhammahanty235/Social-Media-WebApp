@@ -1,24 +1,56 @@
 import React from 'react'
 import './postnew.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImages ,faVideoCamera } from '@fortawesome/free-solid-svg-icons'
-function Postnew() {
-    const style2 = {color: "#1ba94c", fontSize: "1.5em", "margin":"0px 3px" }
-  return (
-    <div className='newpostarea'>
-        <div className="container my-2">
-            <div className="dpandinput">
-                <img src="https://scontent.fixr3-2.fna.fbcdn.net/v/t39.30808-6/314645764_1545955799189269_6229667795802265980_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=RZRYbzBtyEQAX9i47Zy&_nc_ht=scontent.fixr3-2.fna&oh=00_AfB6GDC7sgqFIvEgdCZxkAdasdcb2LcNc2ez8lviiIN0CA&oe=6391A923" alt="dp" className="dp" />
-                <input type="text" className="postinput" placeholder="Share , What's happening in your life" />
+import { faImages, faVideoCamera } from '@fortawesome/free-solid-svg-icons'
+function Postnew(props) {
+    const {userdata} = props;
+    const style2 = { color: "#1ba94c", fontSize: "1.5em", "margin": "0px 3px" }
+    return (
+        <div className='newpostarea'>
+            <div className="container my-2" >
+                <div className="dpandinput">
+                <img src={userdata.user?.profilepic !== null ?userdata.user?.profilepic:"https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" } alt="image" />
+                    <input type="text" className="postinput" placeholder="Share , What's happening in your life" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                </div>
+                <hr className="posthr mt-2" />
+                <div className="photoandvideo">
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faImages} style={style2} />Photo</button>
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal"> <FontAwesomeIcon icon={faVideoCamera} style={style2} />Video</button>
+                </div>
             </div>
-            <hr className="posthr mt-2" />
-            <div className="photoandvideo">
-                <button><FontAwesomeIcon icon={faImages} style={style2} />Photo</button>
-                <button> <FontAwesomeIcon icon={faVideoCamera} style={style2} />Video</button>
+            {/* <!-- Button trigger modal --> */}
+            {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button> */}
+
+            {/* <!-- Modal --> */}
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">New Post</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="form-floating">
+                                <textarea className="form-control textarea shadow-none" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label htmlFor="floatingTextarea">Express what's in your heart</label>
+                            </div>
+
+                            <div className="mb-3 mt-2">
+                                <label htmlFor="formFile" className="form-label">Choose a File</label>
+                                <input className="form-control" type="file" id="formFile"/>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Postnew

@@ -7,19 +7,29 @@ import Navbar from './pages/mainapp/navbar/Navbar';
 import {
   BrowserRouter,Routes,
   Route,
+  
   // Link
 } from "react-router-dom";
+import { useEffect } from 'react';
+// import Uploadimg from './pages/mainapp/home/feed/newpost/Uploadimg';
+
 function App() {
+  // const navigate = useNavigate()
+  
   return (
     <>
         <BrowserRouter>
        
           <Routes>
+
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
+            <Route path='/myposts'/>
+            
           </Routes>
         </BrowserRouter>
+        {/* <Uploadimg/> */}
     </>
 
   );

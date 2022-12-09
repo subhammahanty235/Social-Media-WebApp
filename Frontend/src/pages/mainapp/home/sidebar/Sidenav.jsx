@@ -1,24 +1,28 @@
 import React from 'react'
 import './sidenav.css'
-function Sidenav() {
+import User_image from '../../../../images/user_image.png'
+function Sidenav(props) {
+  const {userdata , pmppage} = props;
+  
   return (
     <div className='sidenav'>
 
         <div className="container">
         <div className="profile">
             <div className="nameanddp">
-                <img src="https://scontent.fixr3-2.fna.fbcdn.net/v/t39.30808-6/314645764_1545955799189269_6229667795802265980_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=RZRYbzBtyEQAX9i47Zy&_nc_ht=scontent.fixr3-2.fna&oh=00_AfB6GDC7sgqFIvEgdCZxkAdasdcb2LcNc2ez8lviiIN0CA&oe=6391A923" alt="" />
-                <p>Subham Mahanty</p>
+                <img src={userdata.user?.profilepic !== null ?userdata.user?.profilepic:"https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" } alt="image" />
+                <p>{userdata.user?.name}</p>
             </div>
             <button>Show Profile</button>
         </div>
 
         <div className="otherbuttons">
-            <button className='active'>Home</button>
+            <button className='active' onClick={()=>{pmppage(1)}}>Home</button>
             <button>Followers</button>
             <button>Followings</button>
-            <button>My Posts</button>
+            <button onClick={()=>{pmppage(2)}}>My Posts</button>
             <button>Saved</button>
+            <button>Log Out</button>
         </div>
 
         </div>

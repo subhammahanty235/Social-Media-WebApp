@@ -6,7 +6,10 @@
     margin-bottom: 50px;
     padding: 0px 10px;
 }
-
+#exampleModal{
+    position: absolute;
+    z-index: 10000;;
+}
 .post{
     width: 100%;
     /* border: 2px solid pink; */
@@ -36,11 +39,12 @@
 }
 .nameanddate p{
     /* border: 2px solid black; */
-    text-align: center;
+    /* text-align: center; */
     margin-top: auto;
     margin: 0px 10px;
     font-weight: 600;
     font-size: 16px;
+    /* color: #fff; */
     /* border: 2px solid red; */
 }
 .nameanddate small{
@@ -80,6 +84,9 @@
 .postbuttons button:hover{
     background-color: rgb(234, 229, 229);
 }
+.postbuttons button:active{
+    padding: 5px 0px;
+}
 .content{
     padding: 10px 0px;
 }
@@ -90,7 +97,7 @@
     align-items: center;
     justify-content: center;
 }
-.image img{
+.conimage img{
     width:30vw;
     height: 50%;
     /* border: 3px solid black; */

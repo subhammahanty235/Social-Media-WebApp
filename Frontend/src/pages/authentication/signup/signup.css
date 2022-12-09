@@ -58,12 +58,14 @@
     justify-content: center;
     border-right: 3px solid #fff;
     border-radius: 50px;
+    overflow: hidden;
     /* border-radius: 50px; */
 
 }
 .login__header{
     color: #fff;
     margin-bottom: 0;
+    overflow: hidden;
 
 }
 
@@ -82,7 +84,7 @@ hr{
     background-color: transparent;
     border-width: 3px;
     /* border-image: linear-gradient(to right, #11998e, #38ef7d); */
-    margin-top: 70px;
+    margin-top: 60px;
     /* border-image-slice: 1; */
     border: 3px solid #1ba94c;
     background-color: transparent;

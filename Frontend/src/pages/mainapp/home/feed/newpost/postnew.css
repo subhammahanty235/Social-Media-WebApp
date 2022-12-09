@@ -60,3 +60,9 @@
     background-color:rgb(246, 240, 240) ;
     /* border: 2px solid rgb(234, 229, 229) !important;; */
 }
+.textarea{
+    border-radius: 20px;
+    outline: 0;
+    /* border :0; */
+    /* border: none; */
+}

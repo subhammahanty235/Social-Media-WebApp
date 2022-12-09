@@ -1,7 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.css'
 import login_image from '../../../images/zorin_login.png'
+import { useNavigate } from 'react-router-dom'
 function Login() {
+    const navigate = useNavigate()
+    const [credential, setcredential] = useState({ email: "", password: "" });
+    const baseurl = "http://localhost:5000/api"
+    const onChange = (e) => {
+        setcredential({ ...credential, [e.target.name]: e.target.value })
+    }
+    const login_func = async () => {
+        if (credential.email !== "" && credential.password !== "") {
+            console.log(credential.email)
+            try {
+                const responce = await fetch("http://localhost:5000/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: credential.email, password: credential.password })
+                });
+
+                const json = await responce.json();
+                console.log(json.result)
+                if(json.flag === true){
+                    localStorage.setItem("sclmdia_73sub67_token", json.token)
+                    localStorage.setItem("sclmdia_73sub67_details", JSON.stringify(json.result))
+                    navigate('/')
+
+                }
+                else{
+                    alert(json.message)
+                }
+            } catch (error) {
+                console.log(error)
+                alert("internal error occured")
+            }
+        }
+        else {
+            alert("please provide credentials")
+        }
+    }
     return (
         <div className='md'>
             <div className="main">
@@ -17,11 +56,11 @@ function Login() {
                         </h3>
                         <hr />
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="text" class="form__field" placeholder="Name" name='email' value={credential.email} onChange={onChange} required />
                             <label for="name" class="form__label">Username</label>
                         </div>
                         <div class="form__group field">
-                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                            <input type="text" class="form__field" placeholder="Name" value={credential.password} name="password" id='password' onChange={onChange} required />
                             <label for="name" class="form__label">Password</label>
                         </div>
                         {/* <div class="form__group field">
@@ -29,7 +68,7 @@ function Login() {
                             <label for="name" class="form__label">Name</label>
                         </div> */}
 
-                        <button className="btn-login">
+                        <button className="btn-login" onClick={login_func}>
                             Log in
                         </button>
                         <button className="btn-signup">
