@@ -33,7 +33,7 @@ function Posts() {
         <div className="postbox">
             {
               myPosts?.map((post)=>{
-                console.log(post)
+                // console.log(post)
                 return <Post post={post} key={post._id}/>
               })
             }

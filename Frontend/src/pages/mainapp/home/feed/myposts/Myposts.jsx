@@ -18,7 +18,7 @@ function Myposts() {
                 }
             }
             )
-
+    
             const mydata = await mydata_raw.json();
             console.log(mydata.posts)
             setmyPosts(mydata.posts)
@@ -40,7 +40,7 @@ function Myposts() {
                 {/* <button onClick={()=>{console.log(myPosts)}}>Click</button> */}
                 {
                     myPosts?.map((post)=>{
-                        console.log(post)
+                        // console.log(post)
                         return <Post post={post} key={post._id}/>
                     })
                 }

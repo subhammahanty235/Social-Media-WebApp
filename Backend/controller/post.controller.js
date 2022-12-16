@@ -11,7 +11,7 @@ const Post = require('../models/posts');
 
 const showallposts = async(req,res)=>{
     try {
-        const data = await Post.find();
+        const data = await Post.find().sort({createdAt:-1});
         res.json(data);
     } catch (error) {
         res.send(error)

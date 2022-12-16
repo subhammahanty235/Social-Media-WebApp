@@ -11,7 +11,8 @@ import {
   // Link
 } from "react-router-dom";
 import { useEffect } from 'react';
-// import Uploadimg from './pages/mainapp/home/feed/newpost/Uploadimg';
+import Uploadimg from './pages/mainapp/home/feed/newpost/Uploadimg';
+import Profile from './pages/mainapp/home/Profiles/Profile';
 
 function App() {
   // const navigate = useNavigate()
@@ -29,7 +30,8 @@ function App() {
             
           </Routes>
         </BrowserRouter>
-        {/* <Uploadimg/> */}
+         {/* <Uploadimg/>
+         <Profile/> */}
     </>
 
   );

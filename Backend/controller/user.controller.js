@@ -61,7 +61,7 @@ const getuserdetails = async(req,res)=>{
     const id = req.params.id;
     try {
         const userdata = await User.findOne({_id:id}).select("-password");
-        const postbyuser = await Post.find({uploadedBy:id});
+        const postbyuser = await Post.find({uploadedBy:id}).sort({createdAt:-1});
         res.json({user:userdata , posts:postbyuser})
     } catch (error) {
         res.send(error)
