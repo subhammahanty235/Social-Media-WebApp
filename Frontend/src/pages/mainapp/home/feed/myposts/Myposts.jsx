@@ -20,7 +20,7 @@ function Myposts() {
             )
     
             const mydata = await mydata_raw.json();
-            console.log(mydata.posts)
+            // console.log(mydata.posts)
             setmyPosts(mydata.posts)
             setmyInfo(mydata.user)
             // console.log(myPosts);
@@ -29,7 +29,7 @@ function Myposts() {
         }
         fetch_data();
         
-
+        
     }, [])
 
 
@@ -37,6 +37,7 @@ function Myposts() {
         <div>
 
             <div className="postbox">
+                {/* <h2 className="text-center text-primary">My Posts</h2> */}
                 {/* <button onClick={()=>{console.log(myPosts)}}>Click</button> */}
                 {
                     myPosts?.map((post)=>{

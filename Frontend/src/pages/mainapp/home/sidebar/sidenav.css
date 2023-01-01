@@ -9,13 +9,22 @@
 
    
 }
-.profile button{
+.buttonactive-profileshow{
     border: 2px solid black;
     padding: 4px 10px;
     width: 90%;
     margin: 10px 10px;
     border-radius: 20px;
     background-color:#7fe3a2;
+    font-weight: 400;
+}
+.buttonnotactive-profileshow{
+    border: 2px solid black;
+    padding: 4px 10px;
+    width: 90%;
+    margin: 10px 10px;
+    border-radius: 20px;
+    background-color:#fff;
     font-weight: 400;
 }
 .profile img{
@@ -47,10 +56,36 @@
     border-radius: 20px;
     background-color:#fff;
     font-weight: 400;
-    padding: 4px 10px;
+    padding: 4px;
     margin-bottom: 10px;
+    transition: all 0.5s;
 
 }
+.otherbuttons button:hover{
+    
+    background-color:#7fe3a2;
+    font-weight: 400;
+    padding: 5px 12px;
+   
+
+}
+.otherbuttons button:active{
+    
+    background-color:#7fe3a2;
+    font-weight: 400;
+    
+  
+   
+
+}
+
 .active{
     background-color: #7fe3a2 !important;
+}
+.modal-body{
+    height: fit-content;
+    /* background-color: #e4e2e2; */
+}
+.modal-header , .modal-footer{
+    background-color: #7fe3a2;
 }

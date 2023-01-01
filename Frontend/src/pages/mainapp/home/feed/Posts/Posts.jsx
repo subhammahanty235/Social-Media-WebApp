@@ -1,7 +1,8 @@
 import React , {useState , useEffect} from 'react'
 import Post from './Post'
 import './posts.css'
-function Posts() {
+function Posts(props) {
+  const {setprofileid ,pmppage} = props
     const [myPosts, setmyPosts] = useState();
     // const [myinfo, setmyInfo] = useState();
     // const mydetails = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'));
@@ -34,7 +35,7 @@ function Posts() {
             {
               myPosts?.map((post)=>{
                 // console.log(post)
-                return <Post post={post} key={post._id}/>
+                return <Post setprofileid={setprofileid} post={post} key={post._id} pmppage={pmppage}/>
               })
             }
             {/* <Post/>

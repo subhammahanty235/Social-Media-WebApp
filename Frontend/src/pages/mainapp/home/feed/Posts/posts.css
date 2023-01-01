@@ -168,6 +168,15 @@
     /* border-radius: 50%; */
 
     /* background-color: aliceblue; */
+    border: 2px solid black;
+}
+.imgdp{
+    width: fit-content;
+    height: 40px;
+    background: none;
+    /* border-radius: 50%; */
+
+    /* background-color: aliceblue; */
     /* border: 2px solid black; */
 }
 

@@ -5,19 +5,38 @@ import './home.css'
 import Sidenav from './sidebar/Sidenav'
 import {useLocation, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import Profile from './Profiles/Profile'
 function Home() {
     const navigate = useNavigate()
-    // let location = useLocation();
-    // useEffect(()=>{
-    //     console.log(location)
-    // })
+    useEffect(()=>{
+      if(!localStorage.getItem('sclmdia_73sub67_token')){
+        navigate('/login')
+}
+    })
     const [userdata , setuserdata] = useState({})
     const [pmppage , setpmppage] = useState(1);
-
-    const pnp_change = (n)=>{         //it will help swiching between all posts and my posts page
-        setpmppage(n);
-        // console.log(pmppage)
+    // const [profileid , setprofile]= useState(JSON.parse(localStorage.getItem('sclmdia_73sub67_details'))._id)
+    const [profileid , setprofile]= useState("")
+    const setprofileid = (id)=>{
+      setprofile(id)
+      console.log(profileid)
     }
+    const pnp_change = (n)=>{         //it will help swiching between all posts and my posts page
+      setpmppage(n);
+      console.log(pmppage)
+      
+  }
+    let page = <Feedbox userdata={userdata} pmp={pmppage} pmppage={pnp_change} setprofileid={setprofileid}/>
+    if(pmppage == 2){
+        page = <Profile id={profileid} />
+      }
+      else{
+        page = <Feedbox userdata={userdata} pmp={pmppage} pmppage={pnp_change}  setprofileid={setprofileid}/>
+      }
+    
+
+    
+    
     useEffect(()=>{
         if(!localStorage.getItem('sclmdia_73sub67_token')){
                 navigate('/login')
@@ -25,8 +44,8 @@ function Home() {
         else{
           async function getdata(){
             const mydetails = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'));
-            // let mydetails2= await mydetails.json()
-            console.log(mydetails)
+          
+            // console.log(mydetails)
             const data = await fetch(`http://localhost:5000/api/auth/getdata/${mydetails._id}`,{
               method:"GET",
               headers: {
@@ -52,10 +71,14 @@ function Home() {
             <div className="oth">
 
                 <div className="feedboxarea">
-                    <Feedbox userdata={userdata} pmp={pmppage}/>
+                   
+                    {
+                        page
+                    }
+                    {/* <Feedbox userdata={userdata} pmp={pmppage}/> */}
                 </div>
                 <div className="sidebararea">
-                    <Sidenav userdata={userdata} pmppage={pnp_change}/>
+                    <Sidenav userdata={userdata} pmppage={pnp_change} pmp={pmppage} setprofileid={setprofileid}/>
                 </div>
             </div>
         </div>
