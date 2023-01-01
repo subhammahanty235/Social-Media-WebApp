@@ -82,10 +82,17 @@
 .active{
     background-color: #7fe3a2 !important;
 }
-.modal-body{
-    height: fit-content;
+.mbfollow{
+    max-height: 70vh !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+
     /* background-color: #e4e2e2; */
 }
-.modal-header , .modal-footer{
+.mbfollow::-webkit-scrollbar {
+    display: none; 
+  } 
+/* .modal-header , .modal-footer{
     background-color: #7fe3a2;
-}
+} */

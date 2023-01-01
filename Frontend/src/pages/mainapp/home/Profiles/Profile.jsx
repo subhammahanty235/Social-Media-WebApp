@@ -1,8 +1,9 @@
-import React ,{useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import NoPosts from '../../../../components/noposts/NoPosts';
 import Post from '../feed/Posts/Post';
 import './profile.css'
 function Profile(props) {
-    const {id} = props;
+    const { id } = props;
     const [myPosts, setmyPosts] = useState();
     const [myinfo, setmyInfo] = useState();
     const mydetails = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'));
@@ -17,13 +18,13 @@ function Profile(props) {
                 }
             }
             )
-    
+
             const mydata = await mydata_raw.json();
             setmyPosts(mydata.posts)
             setmyInfo(mydata.user)
         }
         fetch_data();
-        
+
 
     }, [])
 
@@ -56,16 +57,18 @@ function Profile(props) {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque tempora quae illo officiis autem maxime? Ratione, placeat. Architecto, maxime. Quia, repellendus similique eos perferendis quas facere suscipit ex eveniet sunt nostrum illo saepe culpa fugit? Minima labore sapiente ipsa nemo? Ullam suscipit nemo odit non officia alias excepturi consectetur reprehenderit quas laborum nostrum distinctio quos nam rerum velit sit quidem maiores, illum nisi facilis voluptatibus saepe? Commodi earum, ullam maiores similique cum ipsam quos omnis nostrum officiis tempora non excepturi voluptatem illum! Incidunt blanditiis, sit aliquid ipsum dicta commodi, recusandae velit quisquam vel quis fugit rem, sunt distinctio amet! Unde.
                 </div>
                 {/* <hr className="posthr" /> */}
-                <div className="posts">
-                <div className="container">
-                {
-                    myPosts?.map((post)=>{
-                        // console.log(post)
-                        return <Post post={post} key={post._id}/>
-                    })
-                }
+                 <div className="posts">
+                    <div className="container"> 
+                        {
+                            myPosts.length === 0 ? < NoPosts /> :
+                                myPosts?.map((post) => {
+                                    // console.log(post)
+                                    return <Post post={post} key={post._id} />
+                                    
+                                })
+                        }
 
-                </div>
+                    </div>
                 </div>
             </div>
 

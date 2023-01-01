@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Post from '../Posts/Post'
 import '../Posts/posts.css'
+import Brar  from '../../../../../images/Animaker-bear-unscreen.gif'
+import NoPosts from '../../../../../components/noposts/NoPosts'
 // import Post from '../Posts/Post'
 function Myposts() {
     const [myPosts, setmyPosts] = useState();
@@ -40,7 +42,8 @@ function Myposts() {
                 {/* <h2 className="text-center text-primary">My Posts</h2> */}
                 {/* <button onClick={()=>{console.log(myPosts)}}>Click</button> */}
                 {
-                    myPosts?.map((post)=>{
+                   Myposts.length === 0?<NoPosts/> :
+                   myPosts?.map((post)=>{
                         // console.log(post)
                         return <Post post={post} key={post._id}/>
                     })

@@ -1,0 +1,14 @@
+.nopostsbox{
+    /* border: 2px solid white; */
+    height:35%;
+    background-color: #393a3b;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.nopostsbox h2{
+    overflow: hidden;
+    color: #fff;
+    /* margin: 0; */
+}
