@@ -47,8 +47,10 @@ function Sidenav(props) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <UserCard/>
-              <UserCard/>
+
+
+              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
+              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               {/* {
                 userdata.followers.map((follower)=>{
 
