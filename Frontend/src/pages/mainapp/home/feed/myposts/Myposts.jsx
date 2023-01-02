@@ -42,7 +42,7 @@ function Myposts() {
                 {/* <h2 className="text-center text-primary">My Posts</h2> */}
                 {/* <button onClick={()=>{console.log(myPosts)}}>Click</button> */}
                 {
-                   Myposts.length === 0?<NoPosts/> :
+                   Myposts?.length === 0?<NoPosts/> :
                    myPosts?.map((post)=>{
                         // console.log(post)
                         return <Post post={post} key={post._id}/>

@@ -4,13 +4,22 @@ import User_image from '../../../../images/user_image.png'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import UserCard from '../userCard/UserCard';
+import { useNavigate } from 'react-router-dom';
 function Sidenav(props) {
+  const navigate = useNavigate()
   const { userdata, pmppage, pmp ,setprofileid } = props;
   // const [pmp , setpmp] = useState(pmppage)
   const profileopenbtn = ()=>{
     setprofileid(userdata.user._id)
     pmppage(2)
   }
+
+  const logout = ()=>{
+    localStorage.removeItem('sclmdia_73sub67_details')
+    localStorage.removeItem('sclmdia_73sub67_token')
+    navigate('/login')
+  }
+
   return (
     <div className='sidenav'>
 
@@ -29,7 +38,7 @@ function Sidenav(props) {
           <button data-bs-toggle="modal" data-bs-target="#followingmodal">Followings</button>
           <button onClick={() => { pmppage(3) }} className={pmp == 3 ? 'active' : ''}>My Posts</button>
           <button>Saved</button>
-          <button>Log Out</button>
+          <button onClick={logout}>Log Out</button>
         </div>
 
       </div>

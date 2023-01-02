@@ -60,7 +60,7 @@ function Profile(props) {
                  <div className="posts">
                     <div className="container"> 
                         {
-                            myPosts.length === 0 ? < NoPosts /> :
+                            myPosts?.length === 0 ? < NoPosts /> :
                                 myPosts?.map((post) => {
                                     // console.log(post)
                                     return <Post post={post} key={post._id} />
