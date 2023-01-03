@@ -90,9 +90,9 @@ function Postnew(props) {
                                 <input className="form-control" type="file" id="formFile" onChange={(e) => { setImage(e.target.files[0]) }} />
                             </div>
                         </div>
-                        <div className="modal-footer">
+                        <div className="modal-footer postnewfooter">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={upload}>Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={upload}>Post</button>
                         </div>
                     </div>
                 </div>

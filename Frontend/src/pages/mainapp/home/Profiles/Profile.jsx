@@ -45,9 +45,9 @@ function Profile(props) {
                         <button>Follow</button>
                     </div>
                     <div className='profiledetails'>
-                        <button>Followers <span>200</span></button>
-                        <button>Followings <span>200</span></button>
-                        <button>Posts <span>200</span></button>
+                        <button>Followers <span>{myinfo.followers?.length}</span></button>
+                        <button>Followings <span>{myinfo.following?.length}</span></button>
+                        <button>Posts <span>{myinfo?.totalposts}</span></button>
                     </div>
 
                 </div>
