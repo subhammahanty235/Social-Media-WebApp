@@ -7,8 +7,13 @@
     align-items: center;
     flex-direction: column;
 }
+.nopostsbox img{
+    opacity: 0.7;
+    filter: drop-shadow(16px 12px 27px #FAF9F9);
+}
 .nopostsbox h2{
     overflow: hidden;
     color: #fff;
+    opacity: 0.6;
     /* margin: 0; */
 }
