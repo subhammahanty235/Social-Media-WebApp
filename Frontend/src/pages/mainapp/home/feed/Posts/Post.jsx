@@ -18,9 +18,10 @@ function Post(props) {
         // console.log(myid)
         console.log(post.likes)
         if (liked === true) {
-            alert('already liked ')
+            // alert('already liked ')
             // console.log(" already liked")
             // todo : dislike functionality
+            
         }
         else {
             let statusdata = await fetch(`http://localhost:5000/api/post/likepost/${post._id}`, {
@@ -33,6 +34,7 @@ function Post(props) {
             statusdata = await statusdata.json();
             if (statusdata.flag === true) {
                 setliked(true);
+                setnumLikes(numlikes+1)
             }
             else {
                 alert(statusdata.message)
@@ -69,9 +71,9 @@ function Post(props) {
 
     useEffect(() => {
         myid = localStorage.getItem('sclmdia_73sub67_details')
-        setnumLikes(post.likes.length);
+        
         // console.log(myid)
-
+        
         const fetch_data = async () => {
             const userdata_raw = await fetch(`http://localhost:5000/api/auth/getdata/${post.uploadedBy}`, {
                 method: "GET",
@@ -89,6 +91,7 @@ function Post(props) {
 
         }
         fetch_data()
+        setnumLikes(post.likes.length);
     }, [])
     const style = { color: "orangered", fontSize: "1.5em", "margin": "0px 3px" }
     const style2 = { color: "grey", fontSize: "1.5em", "margin": "0px 3px" }
@@ -144,7 +147,7 @@ function Post(props) {
                 </div>
                 {/* <hr className='posthr' /> */}
                 <div className="landcmts">
-                    <p> {numlikes?.length} Likes</p>
+                    <p> {numlikes} Likes</p>
                     <p>{post.comments?.length}  Comments</p>
                     <p> </p>
 
