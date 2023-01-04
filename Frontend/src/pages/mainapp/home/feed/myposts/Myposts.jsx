@@ -8,7 +8,7 @@ import NoPosts from '../../../../../components/noposts/NoPosts'
 // import Post from '../Posts/Post'
 function Myposts() {
     const [myPosts, setmyPosts] = useState();
-    const [myinfo, setmyInfo] = useState();
+    
     const mydetails = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'));
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function Myposts() {
             const mydata = await mydata_raw.json();
             // console.log(mydata.posts)
             setmyPosts(mydata.posts)
-            setmyInfo(mydata.user)
+           
             // console.log(myPosts);
             // console.log(myinfo);
 
@@ -42,7 +42,7 @@ function Myposts() {
                 {/* <h2 className="text-center text-primary">My Posts</h2> */}
                 {/* <button onClick={()=>{console.log(myPosts)}}>Click</button> */}
                 {
-                   Myposts?.length === 0?<NoPosts/> :
+                   myPosts?.length === 0?<NoPosts/> :
                    myPosts?.map((post)=>{
                         // console.log(post)
                         return <Post post={post} key={post._id}/>
