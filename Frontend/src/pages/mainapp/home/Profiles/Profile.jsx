@@ -42,11 +42,15 @@ function Profile(props) {
                 </div>
                 <div className="follow-unfollow-buttons">
                     <div className='follow-editprofile'>
-                        <button>Follow</button>
+                        {
+                            mydetails?._id === myinfo?._id ?<button>Edit Profile</button> : (myinfo?.following.includes(mydetails?._id)?<button>Follow Back</button>: <button>Follow</button>)
+                        }
+                        {/* <button>Follow</button> */}
+                        
                     </div>
                     <div className='profiledetails'>
-                        <button>Followers <span>{myinfo.followers?.length}</span></button>
-                        <button>Followings <span>{myinfo.following?.length}</span></button>
+                        <button>Followers <span>{myinfo?.followers?.length}</span></button>
+                        <button>Followings <span>{myinfo?.following?.length}</span></button>
                         <button>Posts <span>{myinfo?.totalposts}</span></button>
                     </div>
 
