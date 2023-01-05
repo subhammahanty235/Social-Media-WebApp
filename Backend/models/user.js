@@ -10,9 +10,20 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    profilecreated:{
+        type:Boolean,
+        default:false
+    },
+    username:{
+        type:String,
+        required:true,
+    },
     profilepic: {
         type: String,
         default:null
+    },
+    bio:{
+        type:String,
     },
     email: {
         type: String,
@@ -43,5 +54,7 @@ const UserSchema = mongoose.Schema({
 },
     { timestamps: true }
 )
+
+
 const User = mongoose.model('users',UserSchema);
 module.exports = User;
