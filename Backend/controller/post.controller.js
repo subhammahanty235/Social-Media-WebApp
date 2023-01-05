@@ -9,9 +9,9 @@ const Post = require('../models/posts');
 // 5. Remove a post
 // 6. Show only posts from people followed
 
-const showallposts = async(req,res)=>{
+const showallposts = async (req, res) => {
     try {
-        const data = await Post.find().sort({createdAt:-1});
+        const data = await Post.find().sort({ createdAt: -1 });
         res.json(data);
     } catch (error) {
         res.send(error)
@@ -20,7 +20,6 @@ const showallposts = async(req,res)=>{
 const uploadpost = async (req, res) => {
     const id = req.user.id;
     try {
-
         const data = req.body;
         if (!data.content && !data.media) {
             return res.send("Please add some content to post")
@@ -34,29 +33,61 @@ const uploadpost = async (req, res) => {
     } catch (error) {
         res.send(error)
     }
-
-
-
-
 }
 const likepost = async (req, res) => {
     const id = req.user.id;
     const postid = req.params.id;
-    try {
-        Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
-            if (err) {
-                res.status(502).json({ flag: false, message: err.message });
-            }
-            if (data) {
-                return res.status(200).json({ flag: true, details: data });
-            }
-            else {
-                return res
-                    .status(404)
-                    .json({ flag: false, message: "Post Not found" });
+    const { dislikeflag } = req.query;
 
-            }
-        })
+    try {
+
+        if (dislikeflag) {
+            await Post.findByIdAndUpdate(postid, { $pull: { likes: id } }).exec((err, data) => {
+                if (err) {
+                    res.status(502).json({ flag: false, message: err.message });
+                }
+                if (data) {
+                    return res.status(200).json({ flag: true, details: data });
+                }
+                else {
+                    return res
+                        .status(404)
+                        .json({ flag: false, message: "Post Not found" });
+
+                    Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
+                        if (err) {
+                            res.status(502).json({ flag: false, message: err.message });
+                        }
+                        if (data) {
+                            return res.status(200).json({ flag: true, details: data });
+                        }
+                        else {
+                            return res
+                                .status(404)
+                                .json({ flag: false, message: "Post Not found" });
+
+
+                        }
+                    })
+                }
+            })
+
+        }
+        else
+            await Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
+                if (err) {
+                    res.status(502).json({ flag: false, message: err.message });
+                }
+                if (data) {
+                    return res.status(200).json({ flag: true, details: data });
+                }
+                else {
+                    return res
+                        .status(404)
+                        .json({ flag: false, message: "Post Not found" });
+
+                }
+            })
         // return res.json({"likes":addlike.likes.length , "status":true , "likedby":addlike.likes})
 
     } catch (error) {
@@ -69,7 +100,7 @@ const commentonpost = async (req, res) => {
     const data = req.body;
     const postid = req.params.id
     try {
-        Post.findByIdAndUpdate(postid, { $push: { comments:{ comment:data.comment, commentedBy: id  }} }).exec((err, data) => {
+        Post.findByIdAndUpdate(postid, { $push: { comments: { comment: data.comment, commentedBy: id } } }).exec((err, data) => {
             if (err) {
                 res.status(502).json({ flag: false, message: err.message });
             }
@@ -101,22 +132,27 @@ const editapost = async (req, res) => {
     if (!postid) {
         return req.status(404).json({ flag: false, message: "Sorry , Can't fetch the post's id" });
     }
-    Post.findByIdAndUpdate(postid, newdata).exec((err, data) => {
+    await Post.findByIdAndUpdate(postid, newdata).exec((err, data) => {
         if (err) {
             res.status(502).json({ flag: true, message: err.message });
-        }
-        if (data) {
-            return res.status(200).json({ flag: true, details: data });
-        }
-        else {
-            return res
-                .status(404)
-                .json({ flag: false, message: "Post Not found" });
+            Post.findByIdAndUpdate(postid, newdata).exec((err, data) => {
+                if (err) {
+                    res.status(502).json({ flag: true, message: err.message });
+                }
+                if (data) {
+                    return res.status(200).json({ flag: true, details: data });
+                }
+                else {
+                    return res
+                        .status(404)
+                        .json({ flag: false, message: "Post Not found" });
+
+                }
+
+            })
 
         }
-
     })
-
 }
 const removeapost = async (req, res) => {
     const user = req.user.id;
@@ -136,4 +172,5 @@ const removeapost = async (req, res) => {
 }
 
 
-module.exports = {showallposts, uploadpost, likepost, commentonpost, removeapost, editapost }
+module.exports = { uploadpost, likepost, commentonpost, removeapost, editapost }
+// module.exports = {showallposts, uploadpost, likepost, commentonpost, removeapost, editapost }
