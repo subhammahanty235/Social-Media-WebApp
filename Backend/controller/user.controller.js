@@ -1,6 +1,21 @@
 const Post = require('../models/posts');
 const User = require('../models/user');
 
+const createprofile = async()=>{
+    const data = req.body
+    let userid = req.user.id
+    if(!userid){
+        return res.status(400).json({status:false , message:"user not found , please re login"})
+    }
+    try {
+        const createprofile = await User.findByIdAndUpdate(userId,{$set:data},{new:true});
+        res.status(200).json({status:true , message:"Profile Created Successfully"});
+    } catch (error) {
+        res.send(error)
+    }
+
+}
+
 const editprofile = async(req,res)=>{
     const data = req.body;
     let userId = req.user.id;
@@ -72,4 +87,4 @@ const changeprofilepic = async(req,res)=>{
 
 }
 
-module.exports = {editprofile , deleteprofile , followuser , unfollowuser , getuserdetails , changeprofilepic}
+module.exports = {editprofile , deleteprofile ,createprofile, followuser , unfollowuser , getuserdetails , changeprofilepic}
