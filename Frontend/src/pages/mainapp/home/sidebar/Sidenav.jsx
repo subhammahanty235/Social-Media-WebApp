@@ -56,8 +56,14 @@ function Sidenav(props) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mbfollow">
+              {
+                userdata.user?.followers.map((user)=>{
+                  console.log(user._id);
+                  <UserCard id={user._id} key={user._id}/>
+                })
+              }
 
-
+              {/* <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
@@ -69,13 +75,12 @@ function Sidenav(props) {
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
+              <UserCard id={"6392208ecd08e0e6678ff4f5"}/> */}
+              {/* <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
               <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
-              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
-              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
-              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
-              <UserCard id={"6392208ecd08e0e6678ff4f5"}/>
+              <UserCard id={"6392208ecd08e0e6678ff4f5"}/> */}
               {/* {
                 userdata.followers.map((follower)=>{
 

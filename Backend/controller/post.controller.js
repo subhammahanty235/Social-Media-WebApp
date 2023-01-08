@@ -42,7 +42,7 @@ const likepost = async (req, res) => {
     try {
 
         if (dislikeflag) {
-            await Post.findByIdAndUpdate(postid, { $pull: { likes: id } }).exec((err, data) => {
+            Post.findByIdAndUpdate(postid, { $pull: { likes: id } }).exec((err, data) => {
                 if (err) {
                     res.status(502).json({ flag: false, message: err.message });
                 }
@@ -74,7 +74,7 @@ const likepost = async (req, res) => {
 
         }
         else
-            await Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
+            Post.findByIdAndUpdate(postid, { $push: { likes: id } }).exec((err, data) => {
                 if (err) {
                     res.status(502).json({ flag: false, message: err.message });
                 }
@@ -172,5 +172,5 @@ const removeapost = async (req, res) => {
 }
 
 
-module.exports = { uploadpost, likepost, commentonpost, removeapost, editapost }
-// module.exports = {showallposts, uploadpost, likepost, commentonpost, removeapost, editapost }
+// module.exports = { uploadpost, likepost, commentonpost, removeapost, editapost }
+module.exports = {showallposts, uploadpost, likepost, commentonpost, removeapost, editapost }

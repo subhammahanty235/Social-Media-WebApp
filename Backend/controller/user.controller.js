@@ -85,13 +85,13 @@ const getuserdetails = async(req,res)=>{
 
 const changeprofilepic = async(req,res)=>{
     const id = req.user.id;
-    const data = req.body
+    const data = req.body;
     try{
         const updatedprofile = await User.findByIdAndUpdate(id , {$set:{profilepic:data.profilepic}});
         req.json({flag:true , profilepic:updatedprofile.profilepic});
     }
-    catch{
-        res.json({flag:false , message:"Error Occured"});
+    catch(error){
+        res.json({flag:false , message:error});
     }
 }
 

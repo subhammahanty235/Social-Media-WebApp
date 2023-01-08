@@ -10,5 +10,5 @@ router.put('/updateprofile',fetchuser,user.editprofile)
 router.get('/getdata/:id' , user.getuserdetails)
 router.put('/follow/:id' ,fetchuser, user.followuser);
 router.put('/unfollow/:id' ,fetchuser, user.unfollowuser);
-router.post('/changeprofilepicture' , fetchuser,user.changeprofilepic)
+router.put('/changeprofilepicture' , fetchuser, user.changeprofilepic)
 module.exports = router;
