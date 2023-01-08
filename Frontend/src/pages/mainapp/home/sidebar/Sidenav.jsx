@@ -57,9 +57,10 @@ function Sidenav(props) {
             </div>
             <div class="modal-body mbfollow">
               {
+                userdata.user?.followers.length===0?<p className="text-center">You Don't have any followers</p>:
                 userdata.user?.followers.map((user)=>{
-                  console.log(user._id);
-                  <UserCard id={user._id} key={user._id}/>
+                  // console.log(user);
+                  return <UserCard id={user} key={user._id}/>
                 })
               }
 
@@ -104,12 +105,18 @@ function Sidenav(props) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+            {
+                userdata.user?.following.length===0?<p className="text-center">Follow People to see them here</p>:
+                userdata.user?.following.map((user)=>{
+                  // console.log(user);
+                  return <UserCard id={user} key={user._id}/>
+                })
+              }
             </div>
-            <div class="modal-footer">
+            {/* <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
