@@ -16,7 +16,9 @@ const UserSchema = mongoose.Schema({
     },
     username:{
         type:String,
-        required:true,
+        default:null,
+        
+        // required:true,
     },
     profilepic: {
         type: String,
@@ -55,6 +57,15 @@ const UserSchema = mongoose.Schema({
     { timestamps: true }
 )
 
+
+UserSchema.post('save',async function(){
+    let randomnumber = Math.floor(Math.random() * (9999 - 1111 + 1)) + 1111;
+    let namepart = this.name.slice(5);
+    namepart = namepart.trim();
+    let uname = `${namepart}@${randomnumber}` 
+    this.username = uname
+    // console.log(this.username)
+})
 
 const User = mongoose.model('users',UserSchema);
 module.exports = User;

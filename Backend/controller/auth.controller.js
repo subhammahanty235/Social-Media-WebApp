@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
         const search_email = await User.findOne({email:authdata.email});
         if(!search_email){
             const saveddata = await User.create(authdata)
-            
+            // await saveddata.save();
             const data = {
                 user:{
                     id:saveddata.id
