@@ -3,7 +3,7 @@ import './usercard.css'
 function UserCard(props) {
     const { id } = props
     const [myinfo, setmyInfo] = useState();
-
+    
     useEffect(() => {
         // console.log(id)
 

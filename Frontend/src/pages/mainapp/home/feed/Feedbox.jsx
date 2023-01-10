@@ -1,23 +1,23 @@
-import React,{useEffect} from 'react'
+import React,{useEffect , useContext} from 'react'
 import { useLocation } from 'react-router-dom'
 import Profile from '../Profiles/Profile'
 import './feedbox.css'
 import Myposts from './myposts/Myposts'
 import Postnew from './newpost/Postnew'
 import Posts from './Posts/Posts'
-
+import togglepagecontext from '../../../../context/pagestoggle/togglepagecontext'
 function Feedbox(props) {
-  // const location = useLocation();
-  const { userdata ,pmp , setprofileid ,pmppage} = props
-  // let page= 2;
-    let page = <Posts setprofileid={setprofileid} pmppage={pmppage}/>
-    if(pmp == 1){
-      page = <Posts setprofileid={setprofileid} pmppage={pmppage} />
-      // console.log(location.pathname)
+  const content_page = useContext(togglepagecontext)
+  const { pmppage} = content_page
+ 
+  const { userdata } = props
+
+    let page = <Posts />
+    if(pmppage == 1){
+      page = <Posts />
+      
     }
-    // else if(pmp == 2){
-    //   page = <Profile/>
-    // }
+    
     else{
       page = <Myposts/>
     }

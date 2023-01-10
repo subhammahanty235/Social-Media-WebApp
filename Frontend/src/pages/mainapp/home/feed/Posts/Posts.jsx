@@ -1,8 +1,8 @@
-import React , {useState , useEffect} from 'react'
+import React , {useState , useEffect , useContext} from 'react'
 import Post from './Post'
 import './posts.css'
 function Posts(props) {
-  const {setprofileid ,pmppage} = props
+  // const {setprofileid ,pmppage} = props
     const [myPosts, setmyPosts] = useState();
     // const [myinfo, setmyInfo] = useState();
     // const mydetails = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'));
@@ -35,7 +35,7 @@ function Posts(props) {
             {
               myPosts?.map((post)=>{
                 // console.log(post)
-                return <Post setprofileid={setprofileid} post={post} key={post._id} pmppage={pmppage}/>
+                return <Post post={post} key={post._id} />
               })
             }
             {/* <Post/>

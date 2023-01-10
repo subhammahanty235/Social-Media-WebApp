@@ -4,33 +4,37 @@ import Login from './pages/authentication/login/Login';
 import Signup from './pages/authentication/signup/Signup';
 import Home from './pages/mainapp/home/Home';
 import Navbar from './pages/mainapp/navbar/Navbar';
+import Togglepagestate from './context/pagestoggle/Togglepagestate';
 import {
-  BrowserRouter,Routes,
+  BrowserRouter, Routes,
   Route,
-  
+
   // Link
 } from "react-router-dom";
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Uploadimg from './pages/mainapp/home/feed/newpost/Uploadimg';
 import Profile from './pages/mainapp/home/Profiles/Profile';
 
 function App() {
   // const navigate = useNavigate()
-  
+
   return (
     <>
+      <Togglepagestate>
         <BrowserRouter>
-       
+
           <Routes>
 
-            <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/signup' element={<Signup/>}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
             {/* <Route path='/myposts'/> */}
-            
+
           </Routes>
         </BrowserRouter>
-         {/* <Uploadimg/>
+
+      </Togglepagestate>
+      {/* <Uploadimg/>
          <Profile/> */}
     </>
 

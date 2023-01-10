@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect ,useContext } from 'react'
 import { GrLike } from 'react-icons/gr'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots, faShare } from '@fortawesome/free-solid-svg-icons'
+import togglepagecontext from '../../../../../context/pagestoggle/togglepagecontext'
 import Comment from './Comment'
 function Post(props) {
-
-    const { post , setprofileid ,pmppage } = props;
+    const content_page = useContext(togglepagecontext)
+    const { pmppage, changepage, setprofileid } = content_page
+    const { post } = props;
     let myid = JSON.parse(localStorage.getItem('sclmdia_73sub67_details'))._id;
     const [numlikes, setnumLikes] = useState(0)
     const [liked, setliked] = useState(post.likes.includes(myid) ? true : false)
@@ -39,7 +41,7 @@ function Post(props) {
             else {
                 alert(statusdata.message)
             }
-            alert("liked")
+            // alert("liked")
         }
 
         //     const statusdata = await fetch(`http://localhost:5000/api/post/likepost/${post._id}`)
@@ -101,7 +103,7 @@ function Post(props) {
 
     const ooc = (id)=>{
         setprofileid(id)
-        pmppage(2)
+        changepage(2)
 
     }
     return (

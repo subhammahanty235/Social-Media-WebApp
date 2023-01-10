@@ -1,17 +1,20 @@
-import React from 'react'
+import React ,{useContext} from 'react'
 import './sidenav.css'
 import User_image from '../../../../images/user_image.png'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import UserCard from '../userCard/UserCard';
 import { useNavigate } from 'react-router-dom';
+import togglepagecontext from '../../../../context/pagestoggle/togglepagecontext';
 function Sidenav(props) {
+  const content_page = useContext(togglepagecontext)
+  const { pmppage, changepage, setprofileid } = content_page
   const navigate = useNavigate()
-  const { userdata, pmppage, pmp ,setprofileid } = props;
+  const { userdata} = props;
   // const [pmp , setpmp] = useState(pmppage)
   const profileopenbtn = ()=>{
     setprofileid(userdata.user._id)
-    pmppage(2)
+    changepage(2)
   }
 
   const logout = ()=>{
@@ -29,14 +32,14 @@ function Sidenav(props) {
             <img src={userdata.user?.profilepic !== null ? userdata.user?.profilepic : "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png"} alt="image" />
             <p>{userdata.user?.name}</p>
           </div>
-          <button onClick={() => { profileopenbtn() }} className={pmp == 2 ? 'buttonactive-profileshow' : 'buttonnotactive-profileshow'}>Show Profile</button>
+          <button onClick={() => { profileopenbtn() }} className={(pmppage == 2 || pmppage == 5)? 'buttonactive-profileshow' : 'buttonnotactive-profileshow'}>Show Profile</button>
         </div>
 
         <div className="otherbuttons">
-          <button className={pmp == 1 ? 'active' : ''} onClick={() => { pmppage(1) }}>Home</button>
+          <button className={(pmppage == 1) ? 'active' : ''} onClick={() => { changepage(1) }}>Home</button>
           <button data-bs-toggle="modal" data-bs-target="#followersmodal">Followers</button>
           <button data-bs-toggle="modal" data-bs-target="#followingmodal">Followings</button>
-          <button onClick={() => { pmppage(3) }} className={pmp == 3 ? 'active' : ''}>My Posts</button>
+          <button onClick={() => { changepage(3) }} className={pmppage == 3 ? 'active' : ''}>My Posts</button>
           <button>Saved</button>
           <button onClick={logout}>Log Out</button>
         </div>
