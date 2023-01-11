@@ -150,13 +150,13 @@ function Post(props) {
                 {/* <hr className='posthr' /> */}
                 <div className="landcmts">
                     <p> {numlikes} Likes</p>
-                    <p>{post.comments?.length}  Comments</p>
+                    <p>{post.comments?.length} Comments</p>
                     <p> </p>
 
                 </div>
                 <hr className='posthr' />
                 <div className="postbuttons">
-                    <button><FontAwesomeIcon icon={faThumbsUp} onClick={() => likepost()} style={liked === true ? style : style2} />{liked == true ? "Liked" : "like"}</button>
+                    <button onClick={() => likepost()} ><FontAwesomeIcon icon={faThumbsUp}  style={liked === true ? style : style2} />{liked == true ? "Liked" : "like"}</button>
                     <button data-bs-toggle="modal" data-bs-target={`#post${post._id}`}> <FontAwesomeIcon icon={faCommentDots} style={style2} />Comment</button>
                     <button> <FontAwesomeIcon icon={faShare} style={style2} /> share</button>
 
@@ -174,7 +174,6 @@ function Post(props) {
                         <div class="modal-body cmtmdl">
                             {
                                 post.comments?.map((data) => {
-                                    // console.log(c);
                                     return <Comment cmt={data} />
                                 })
                             }
