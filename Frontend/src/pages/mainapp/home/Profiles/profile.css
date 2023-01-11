@@ -150,3 +150,84 @@
 
 /* update profile page */
 
+.mainscreen{
+    /* display: flex; */
+    height: 90vh;
+    border: none;
+    border-right: 1px solid black;
+    border-radius: 20px;
+    z-index: 100;
+}
+.navbar110{
+    height: 50px;
+    width: 100%;
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.profileform{
+    /* border: 4px solid yellow; */
+}
+.form2{
+    /* border: 4px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imagesection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    /* border:2px solid red; */
+}
+.groupinp{
+    margin: 5px 10px;
+    /* border: 3px solid pink; */
+    width:90%;
+    height: fit-content;
+    display: flex;
+    /* flex-direction: column; */
+
+}
+.innergroupinp{
+    margin: 5px 10px;
+    /* border: 3px solid pink; */
+    width:100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+
+}
+.usernameinpandbutton{
+    width: 100%;
+    /* border: 2px solid red; */
+}
+.usernameinpandbutton input{
+    width: 85%;
+}
+.usernameinpandbutton button{
+    width: 15%;
+    padding: 6px 10px;
+    border-left: none;
+    background-color: #7fe3a2;
+    border-radius: 2px;
+    border: 1px solid grey;
+}
+.updatebutton{
+    /* margin: 5px 5px; */
+
+    width: 10%;
+    margin-top: 5px;;
+    padding: 6px 5px;
+    /* border-left: none; */
+    border-radius: 2px;
+    border: 1px solid black;
+    background-color: #7fe3a2;
+    font-weight: bold;
+}
+.innergroupinp input{
+    padding: 5px 10px;
+}
