@@ -156,6 +156,7 @@
     border: none;
     border-right: 1px solid black;
     border-radius: 20px;
+    border-top-right-radius: 0px;
     z-index: 100;
 }
 .navbar110{
@@ -178,10 +179,19 @@
 }
 .imagesection{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 20vh;
     /* border:2px solid red; */
+}
+.imagesection label{
+    /* border: 2px solid red; */
+    margin: 0;
+    margin-left: 35px;
+    margin-top: 10px;
+    overflow: hidden;
+
 }
 .groupinp{
     margin: 5px 10px;
