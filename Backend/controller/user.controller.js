@@ -18,10 +18,18 @@ const createprofile = async()=>{
 
 const editprofile = async(req,res)=>{
     const data = req.body;
+    console.log(data)
     let userId = req.user.id;
     let newdata = {};
     if(data.name)newdata.name = data.name;
     if(data.mobileno)newdata.mobileno = data.mobileno;
+    if(data.username)newdata.username = data.username
+    if(data.profilepic)newdata.profilepic = data.profilepic
+    if(data.email)newdata.email = data.email
+    if(data.bio)newdata.bio = data.bio
+    
+    // if(data.username)newdata.username = data.username
+    // if(data.username)newdata.username = data.username
 
     try {
         const updateddata = await User.findByIdAndUpdate(userId,{$set:newdata},{new:true});
@@ -72,6 +80,20 @@ const unfollowuser = async(req,res)=>{
     }
 }
 
+const checkusername = async()=>{
+    const username = req.params.userid;
+    try {
+        const data = await User.findOne({username:username}).select("_id");
+        if(data){
+            res.json({flag:false});
+        }
+        else{
+            res.json({flag:true});
+        }
+    } catch (error) {
+        res.status(500).send("Technical Error Occured");
+    }
+}
 const getuserdetails = async(req,res)=>{
     const id = req.params.id;
     try {
@@ -95,4 +117,4 @@ const changeprofilepic = async(req,res)=>{
     }
 }
 
-module.exports = {editprofile , deleteprofile ,createprofile, followuser , unfollowuser , getuserdetails , changeprofilepic}
+module.exports = {editprofile , deleteprofile ,createprofile, followuser , unfollowuser , getuserdetails , changeprofilepic , checkusername}

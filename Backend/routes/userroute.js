@@ -11,4 +11,5 @@ router.get('/getdata/:id' , user.getuserdetails)
 router.put('/follow/:id' ,fetchuser, user.followuser);
 router.put('/unfollow/:id' ,fetchuser, user.unfollowuser);
 router.put('/changeprofilepicture' , fetchuser, user.changeprofilepic)
+router.get('/checkusername/:userid' , user.checkusername)
 module.exports = router;
