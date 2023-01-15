@@ -8,7 +8,7 @@ const createprofile = async()=>{
         return res.status(400).json({status:false , message:"user not found , please re login"})
     }
     try {
-        const createprofile = await User.findByIdAndUpdate(userId,{$set:data},{new:true});
+        const createprofile = await User.findByIdAndUpdate(userid,{$set:data},{new:true});
         res.status(200).json({status:true , message:"Profile Created Successfully"});
     } catch (error) {
         res.send(error)
@@ -26,16 +26,20 @@ const editprofile = async(req,res)=>{
     if(data.username)newdata.username = data.username
     if(data.profilepic)newdata.profilepic = data.profilepic
     if(data.email)newdata.email = data.email
-    if(data.bio)newdata.bio = data.bio
+    if(data.bio){
+        let newbio = data.bio.replace(/\\n/g, '\n');
+        console.log(newbio)
+        newdata.bio = newbio
+    }
     
     // if(data.username)newdata.username = data.username
     // if(data.username)newdata.username = data.username
 
     try {
         const updateddata = await User.findByIdAndUpdate(userId,{$set:newdata},{new:true});
-        res.send(updateddata);
+        res.send({flag:true,data: updateddata});
     } catch (error) {
-        res.send(error)
+        res.send({flag:false})
     }
 }
 const deleteprofile = async(req,res)=>{
@@ -80,7 +84,7 @@ const unfollowuser = async(req,res)=>{
     }
 }
 
-const checkusername = async()=>{
+const checkusername = async(req,res)=>{
     const username = req.params.userid;
     try {
         const data = await User.findOne({username:username}).select("_id");

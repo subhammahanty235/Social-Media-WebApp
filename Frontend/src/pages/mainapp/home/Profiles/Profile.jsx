@@ -66,7 +66,9 @@ function Profile(props) {
                 <hr className="posthr" />
                 <div className="bio">
                     {/* <h4>Bio:</h4> */}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque tempora quae illo officiis autem maxime? Ratione, placeat. Architecto, maxime. Quia, repellendus similique eos perferendis quas facere suscipit ex eveniet sunt nostrum illo saepe culpa fugit? Minima labore sapiente ipsa nemo? Ullam suscipit nemo odit non officia alias excepturi consectetur reprehenderit quas laborum nostrum distinctio quos nam rerum velit sit quidem maiores, illum nisi facilis voluptatibus saepe? Commodi earum, ullam maiores similique cum ipsam quos omnis nostrum officiis tempora non excepturi voluptatem illum! Incidunt blanditiis, sit aliquid ipsum dicta commodi, recusandae velit quisquam vel quis fugit rem, sunt distinctio amet! Unde.
+                    <p dangerouslySetInnerHTML={{ __html: myinfo?.bio.replace(/\n/g, "<br/>") }} />
+                    {/* {myinfo?.bio} */}
+                    {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque tempora quae illo officiis autem maxime? Ratione, placeat. Architecto, maxime. Quia, repellendus similique eos perferendis quas facere suscipit ex eveniet sunt nostrum illo saepe culpa fugit? Minima labore sapiente ipsa nemo? Ullam suscipit nemo odit non officia alias excepturi consectetur reprehenderit quas laborum nostrum distinctio quos nam rerum velit sit quidem maiores, illum nisi facilis voluptatibus saepe? Commodi earum, ullam maiores similique cum ipsam quos omnis nostrum officiis tempora non excepturi voluptatem illum! Incidunt blanditiis, sit aliquid ipsum dicta commodi, recusandae velit quisquam vel quis fugit rem, sunt distinctio amet! Unde. */}
                 </div>
                 {/* <hr className="posthr" /> */}
                 <div className="posts">

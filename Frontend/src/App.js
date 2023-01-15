@@ -1,5 +1,6 @@
 
 import './App.css';
+import React , {useState} from 'react';
 import Login from './pages/authentication/login/Login';
 import Signup from './pages/authentication/signup/Signup';
 import Home from './pages/mainapp/home/Home';
@@ -11,15 +12,15 @@ import {
 
   // Link
 } from "react-router-dom";
-// import { useEffect } from 'react';
-import Uploadimg from './pages/mainapp/home/feed/newpost/Uploadimg';
-import Profile from './pages/mainapp/home/Profiles/Profile';
+
 
 function App() {
+ 
   // const navigate = useNavigate()
 
   return (
     <>
+    {/* <MyForm/> */}
       <Togglepagestate>
         <BrowserRouter>
 
@@ -28,8 +29,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            {/* <Route path='/myposts'/> */}
-
+            
           </Routes>
         </BrowserRouter>
 
@@ -38,7 +38,7 @@ function App() {
          <Profile/> */}
     </>
 
-  );
+  ); 
 }
 
 export default App;
