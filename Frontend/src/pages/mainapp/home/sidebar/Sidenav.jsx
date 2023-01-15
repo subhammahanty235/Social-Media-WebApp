@@ -40,7 +40,10 @@ function Sidenav(props) {
           <button data-bs-toggle="modal" data-bs-target="#followersmodal">Followers</button>
           <button data-bs-toggle="modal" data-bs-target="#followingmodal">Followings</button>
           <button onClick={() => { changepage(3) }} className={pmppage == 3 ? 'active' : ''}>My Posts</button>
+          {/* <div className="imhgy"> */}
+
           <button>Saved</button>
+          {/* </div> */}
           <button onClick={logout}>Log Out</button>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { GrLike } from 'react-icons/gr'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +23,7 @@ function Post(props) {
             // alert('already liked ')
             // console.log(" already liked")
             // todo : dislike functionality
-            
+
         }
         else {
             let statusdata = await fetch(`http://localhost:5000/api/post/likepost/${post._id}`, {
@@ -36,7 +36,7 @@ function Post(props) {
             statusdata = await statusdata.json();
             if (statusdata.flag === true) {
                 setliked(true);
-                setnumLikes(numlikes+1)
+                setnumLikes(numlikes + 1)
             }
             else {
                 alert(statusdata.message)
@@ -48,24 +48,31 @@ function Post(props) {
     }
 
     const commentonPost = async () => {
-        let resp = await fetch(`http://localhost:5000/api/post/comment/${post._id}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json',
-                'authtoken': localStorage.getItem('sclmdia_73sub67_token')
+        if (commenttext.comment !== "") {
+            let resp = await fetch(`http://localhost:5000/api/post/comment/${post._id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authtoken': localStorage.getItem('sclmdia_73sub67_token')
+                }
+                ,
+                body: JSON.stringify(commenttext)
+
+
+            })
+
+            resp = await resp.json();
+            if (resp.flag === true) {
+                console.log("Comment Added")
             }
-            ,
-            body: JSON.stringify(commenttext)
+            else {
+                console.log("Error error occured")
+            }
 
-
-        })
-
-        resp = await resp.json();
-        if (resp.flag === true) {
-            console.log("Comment Added")
         }
         else {
-            console.log("Error error occured")
+
+            alert("Please Enter a comment")
         }
 
     }
@@ -73,9 +80,9 @@ function Post(props) {
 
     useEffect(() => {
         myid = localStorage.getItem('sclmdia_73sub67_details')
-        
+
         // console.log(myid)
-        
+
         const fetch_data = async () => {
             const userdata_raw = await fetch(`http://localhost:5000/api/auth/getdata/${post.uploadedBy}`, {
                 method: "GET",
@@ -101,7 +108,7 @@ function Post(props) {
     //     console.log(numlikes)
     // ]
 
-    const ooc = (id)=>{
+    const ooc = (id) => {
         setprofileid(id)
         changepage(2)
 
@@ -112,7 +119,7 @@ function Post(props) {
 
             <div className='post'>
                 <div className="postbyinfo">
-                    <img onClick={()=>ooc(uploadedBy._id)} src={uploadedBy?.profilepic !== null ? uploadedBy?.profilepic : "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png"} alt="image" />
+                    <img onClick={() => ooc(uploadedBy._id)} src={uploadedBy?.profilepic !== null ? uploadedBy?.profilepic : "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png"} alt="image" />
                     <div className="nameanddate">
                         <p>{uploadedBy?.name}</p>
                         <small className="timeline">
@@ -156,7 +163,7 @@ function Post(props) {
                 </div>
                 <hr className='posthr' />
                 <div className="postbuttons">
-                    <button onClick={() => likepost()} ><FontAwesomeIcon icon={faThumbsUp}  style={liked === true ? style : style2} />{liked == true ? "Liked" : "like"}</button>
+                    <button onClick={() => likepost()} ><FontAwesomeIcon icon={faThumbsUp} style={liked === true ? style : style2} />{liked == true ? "Liked" : "like"}</button>
                     <button data-bs-toggle="modal" data-bs-target={`#post${post._id}`}> <FontAwesomeIcon icon={faCommentDots} style={style2} />Comment</button>
                     <button> <FontAwesomeIcon icon={faShare} style={style2} /> share</button>
 
@@ -169,7 +176,7 @@ function Post(props) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title fs-5 text-center" id="exampleModalLabel">Comments</h5>
-                            
+
                         </div>
                         <div class="modal-body cmtmdl">
                             {
@@ -184,7 +191,7 @@ function Post(props) {
                                 <input type="text" name="comment" id="" placeholder='Write Your Comment' value={commenttext.comment} onChange={(e) => { setCommentText({ comment: e.target.value }) }} />
                                 <button onClick={commentonPost}>Send</button>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

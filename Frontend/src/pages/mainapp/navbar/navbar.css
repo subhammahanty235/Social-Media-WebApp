@@ -31,6 +31,7 @@
     font-size: 18px;
     transition: all 0.5s;
     border:2px solid black !important;
+    display: none;
 }
 .navb input:hover{
     background-color:rgb(246, 240, 240);

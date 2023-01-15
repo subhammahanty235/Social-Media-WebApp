@@ -9,8 +9,11 @@
 
    
 }
+.profile:hover{
+    background-color: rgb(234, 229, 229);
+}
 .buttonactive-profileshow{
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 4px 10px;
     width: 90%;
     margin: 10px 10px;
@@ -19,14 +22,17 @@
     font-weight: 400;
 }
 .buttonnotactive-profileshow{
-    border: 2px solid black;
-    padding: 4px 10px;
+    border: 1px solid black;
+    padding: 6px 10px;
     width: 90%;
     margin: 10px 10px;
     border-radius: 20px;
     background-color:#fff;
     font-weight: 400;
+    /* transition: all 0.5s; */
 }
+
+
 .profile img{
     width: 50px;
     height: 50px;
@@ -51,28 +57,35 @@
     margin-top: 20px;
 
 }
+
 .otherbuttons button{
     width: 100%;
     border-radius: 20px;
     background-color:#fff;
     font-weight: 400;
-    padding: 4px;
-    margin-bottom: 10px;
-    transition: all 0.5s;
+    padding: 8px 0px;
+    margin-top: 10px;
+    transition: padding 0.3s;
+    border: none;
+    /* border: 1px solid black; */
 
 }
 .otherbuttons button:hover{
     
     background-color:#7fe3a2;
     font-weight: 400;
-    padding: 5px 12px;
-   
+    padding: 8px 0px;
+    padding-top: 8px;
+    transition: all 0.5s;
 
 }
 .otherbuttons button:active{
     
     background-color:#7fe3a2;
     font-weight: 400;
+    padding: 5px 1px;
+    padding-top: 5px;
+    /* margin-bottom: 15px; */
     
   
    
